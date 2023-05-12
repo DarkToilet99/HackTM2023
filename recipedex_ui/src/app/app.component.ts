@@ -7,18 +7,8 @@ import { Loader } from "@googlemaps/js-api-loader"
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  zoom = 12;
+  
   map: google.maps.Map | undefined;
-  center: google.maps.LatLngLiteral= {} as google.maps.LatLngLiteral ;
-  options: google.maps.MapOptions = {
-    mapTypeId: 'hybrid',
-    zoomControl: false,
-    scrollwheel: false,
-    disableDoubleClickZoom: true,
-    maxZoom: 15,
-    minZoom: 8,
-  };
-
   loader = new Loader({
     apiKey: "AIzaSyDCTRkOtQD9X-yPaJGXdPEgwc4Af1dokFQ",
     version: "weekly",
