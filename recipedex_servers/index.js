@@ -1,11 +1,25 @@
-const express = require('express')
-const app = express()
-const port = 3000
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+const dotenv = require("dotenv");
+const express = require('express');
+const mongoose = require("mongoose");
+const appRoute = require('./routes/app');
+const http = require('http');
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+dotenv.config();
+const router = express();
+
+router.use('/', appRoute);
+
+const httpServer = http.createServer(router);
+
+const start = async () => {
+    try {
+        await mongoose.connect(process.env.MONGO_URL);
+        httpServer.listen(3000, () => console.log("SERVER"));
+    } catch (error) {
+        console.error(error);
+        process.exit(1);
+    }
+}
+
+start();
