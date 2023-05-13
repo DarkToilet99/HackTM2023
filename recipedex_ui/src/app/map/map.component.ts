@@ -50,7 +50,7 @@ export class AppMapComponent implements OnInit {
       this.setCurrentLocation();
     });
 
-    // this.recipeId = this.route.snapshot.paramMap.get('id')!;
+    this.recipeId = this.route.snapshot.paramMap.get('id')!;
     // this.recipe = this.recipeService.recipes.find(recipe => recipe.id === this.recipeId)!;
   }
 
