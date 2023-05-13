@@ -12,5 +12,7 @@ router.get('/getStoresWithProducts',controller.getStoresWithProducts);
 
 router.get('/allRecipes',controller.getAllRecipes);
 
+router.get('/search',controller.searchRecipes);
+
 
 module.exports = router;

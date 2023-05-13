@@ -43,8 +43,14 @@ const _getRecipe = async (recipe_id) => {
   return recipe;
 }
 
-const _getStoreProductsByCatprodId = async (store_id, catprod_ids) => {
-    let store_products = await ProductInfo.find({"storeid" : store_id, "catprod.id" : {"$in" : catprod_ids}});
+const _getRecipesByIngredients = async(ingredient_list) => {
+  let regex_expr = ingredient_list.join("||"); 
+  let recipes = await Recipes.find({"ingredients" : {"$regex" : regex_expr}});
+  return recipes;
+}
+
+const _getPromiseStoreProductsByCatprodId = async (store_id, catprod_ids) => {
+    let store_products = ProductInfo.find({"in_stock" : true ,"storeid" : store_id, "catprod.id" : {"$in" : catprod_ids}});
     return store_products;
 }
 
@@ -108,21 +114,40 @@ const findStoresWithinDistance = async (req,res) => {
 const infoAggregate = async (Lat, Lon, Distance, recipe_id) => {
   let stores_within_distance = await _findStoresWithinDistance(Lat, Lon, Distance);
   let recipe_ingredients_ids = await _getRecipeIngredientsIds(recipe_id);
-  
+  let should_store = true;
   let promises = [];
   for (let i = 0; i < stores_within_distance.length; i++) {
-    let found_ingredients_list = [];
+    should_store = true;
     for (let ingredient_ids in recipe_ingredients_ids) {
-      let promise = _getStoreProductsByCatprodId(stores_within_distance[i]["id"], recipe_ingredients_ids[ingredient_ids]);
+      let promise = _getPromiseStoreProductsByCatprodId(stores_within_distance[i]["id"], recipe_ingredients_ids[ingredient_ids]);
       promises.push(promise);
     }
-    
     let found_ingredients = await Promise.all(promises);
-    stores_within_distance[i]["found_ingredients_list"] = found_ingredients;
+    for (ingredients_list of found_ingredients) {
+      if(ingredients_list.length == 0) {
+        should_store = false;
+      }
+    }
+    if( should_store == true) {
+      stores_within_distance[i]["found_ingredients_list"] = found_ingredients;
+    }
+    else {
+      stores_within_distance.splice(i, 1);
+    }
     
   }
   
   return stores_within_distance;
+}
+
+const searchRecipes = async (req, res) => {
+  let search_string = req.query.search;
+
+  let recipes = await _getRecipesByIngredients(search_string.split(","));
+  for (recipe of recipes) {
+    recipe["ingredient_product_index"] = undefined;
+  }
+  res.status(200).json(recipes);
 }
 
 const getStoresWithProducts = async(req, res) => {
@@ -130,4 +155,4 @@ const getStoresWithProducts = async(req, res) => {
   res.status(200).json(stores_with_products);
 }
 
-module.exports = {findStoresWithinDistance, getRecipe, getStoresWithProducts, getAllRecipes};
+module.exports = {findStoresWithinDistance, getRecipe, getStoresWithProducts, getAllRecipes, searchRecipes};
