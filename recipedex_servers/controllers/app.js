@@ -65,6 +65,14 @@ const getRecipe = async(req, res) => {
   return res.status(200).json(recipe);
 }
 
+const getAllRecipes = async(req, res) => {
+  let recipes = await Recipes.find();
+  for(let i = 0; i < recipes.length; i++) {
+    recipes[i]["ingredient_product_index"] = undefined;
+  }
+  return res.status(200).json(recipes);
+}
+
 const findStoresWithinDistance = async (req,res) => {
     let all_stores = await Stores.find();
     let response_json = [];
@@ -75,6 +83,7 @@ const findStoresWithinDistance = async (req,res) => {
     }
     return res.status(200).json(response_json);
 }
+
 
 
 // const infoAggregate = async (Lat, Lon, Distance, recipe_id) => {
@@ -121,4 +130,4 @@ const getStoresWithProducts = async(req, res) => {
   res.status(200).json(stores_with_products);
 }
 
-module.exports = {findStoresWithinDistance, getRecipe, getStoresWithProducts};
+module.exports = {findStoresWithinDistance, getRecipe, getStoresWithProducts, getAllRecipes};
