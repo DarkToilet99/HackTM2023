@@ -47,13 +47,14 @@
         <recipes-table></recipes-table>
     </div>
 
-    <div *ngIf="this.storeList.length> 0? true: false">
+    <div *ngIf="this.storeList.length> 0? true: false" [ngStyle]="{ 'background-color': 'gray' }">
         <label>Magazine</label>
-        <p-orderList [value]="storeList" [listStyle]="{ 'max-height': '30rem' }">
-            <ng-template let-store pTemplate="item">
-                <div class="flex align-items-center p-2 w-full flex-wrap">
+        <p-dataView [value]="storeList">
+            <ng-template let-store pTemplate="listItem">
+                <br>
+                <div class="flex align-items-center p-2 w-full flex-wrap" [ngStyle]="{ 'background-color': 'white' }">
                     <div class="w-full text-center lg:w-auto lg:text-left">
-                        <label>store.name</label>
+                        <label>{{store.name}}</label>
                     </div>
                     <div class="flex-1">
                         <h5 class="mb-2">{{ store.addrstring }}</h5>
@@ -61,11 +62,11 @@
                         <span class="vertical-align-middle line-height-1">{{ store.zipcode }}</span>
                     </div>
                     <div class="flex flex-column align-items-end">
-                        <h6 class="mb-2">{{ '$ ' + store.location }}</h6>
+                        <h6 class="mb-2">{{ 'lat:' + store.location.Lat!=undefined? store.location.Lat: '0' + ' long:' + store.location.Lon!= undefined? store.location.Lon: '0' }}</h6>
                     </div>
                 </div>
             </ng-template>
-        </p-orderList>
+        </p-dataView>
     </div>
 </div>
 

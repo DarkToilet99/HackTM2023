@@ -14,6 +14,7 @@ import { OrderListModule } from 'primeng/orderlist';
 import { TagModule } from 'primeng/tag';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { HttpinterceptInterceptor } from './services/httpintercept.interceptor';
+import { DataViewModule } from 'primeng/dataview';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { HttpinterceptInterceptor } from './services/httpintercept.interceptor';
     OrderListModule,
     TagModule,
     DragDropModule,
-    NgbTypeaheadModule
+    NgbTypeaheadModule,
+    DataViewModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
