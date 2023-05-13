@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { StoreService } from '../services/store.service';
+import { Store } from '../models/storeModel';
 import { Observable, OperatorFunction, debounceTime, distinctUntilChanged, map } from 'rxjs';
 
 const states = [
@@ -70,11 +72,14 @@ const states = [
 })
 
 export class SearchCardComponent {
+  storeList: Store[] = [];
+  latitude: number = 0;
+  longitude: number = 0;
+  distance: number = 1000;
+
   public model: any;
-
-	formatter = (result: string) => result.toUpperCase();
-
-	search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>) =>
+  formatter = (result: string) => result.toUpperCase();
+  search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>) =>
 		text$.pipe(
 			debounceTime(200),
 			distinctUntilChanged(),
@@ -83,4 +88,23 @@ export class SearchCardComponent {
 			),
 		);
 
+
+  constructor(private storeService: StoreService){
+    if ('geolocation' in navigator) {
+      this.storeList.length
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.latitude = position.coords.latitude;
+        this.longitude = position.coords.longitude;
+
+		this.storeService.getAllStores(this.latitude,this.longitude,this.distance).subscribe({
+			next: (res: Store[]) => {
+			  this.storeList = res;
+			}
+		})
+
+      });
+    }
+    
+  }
+  
 }
