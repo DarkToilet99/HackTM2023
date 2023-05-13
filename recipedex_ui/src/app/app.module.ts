@@ -6,16 +6,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SearchCardComponent } from './search-card/search-card.component';
 import { RecipesTableComponent } from './recipes-table/recipes-table.component';
-import { RecipeDetailsComponent } from './recipe-details/recipe-details.component';
 import { AppMapComponent } from './map/map.component';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchCardComponent,
     RecipesTableComponent,
-    RecipeDetailsComponent,
     AppMapComponent
   ],
   imports: [
@@ -23,7 +22,8 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     GoogleMapsModule,
     FormsModule,
-    NgbTypeaheadModule
+    NgbTypeaheadModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

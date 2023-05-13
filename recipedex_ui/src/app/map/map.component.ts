@@ -1,6 +1,9 @@
 import { Component,OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Loader } from "@googlemaps/js-api-loader"
 import { environment } from 'src/environments/environment.development';
+import { RecipeService } from '../recipe.service';
+import { Recipe } from '../recipe.interface';
 
 @Component({
   selector: 'app-map',
@@ -8,7 +11,14 @@ import { environment } from 'src/environments/environment.development';
   styleUrls: ['./map.component.scss']
 })
 export class AppMapComponent implements OnInit {
-  
+  public recipeId = '';
+  public recipe: Recipe = {
+    id: '1',
+    name: 'Pilaf cu pui',
+    ingredients: [{name: 'orez', checked: false}, {name: 'piept de pui', checked: true}, {name: 'ceapa', checked: false}, {name: 'morcov', checked: false}, {name: 'ulei de masline', checked: true}, {name: 'sare', checked: false}, {name: 'piper', checked: false}],
+    description: 'Se pune pe foc o oala cu apa si putina sare. Cand clocoteste apa se pune orezul si se lasa sa fiarba la foc mic. In timp ce fierbe pieptul de pui se taie bucatele se condimenteaza si se prajeste in 3-4 linguri de ulei de masline. Cand a scazut apa si incepe sa se rumeneasca se pune ceapa taiata rondele si daca doriți si morcovul taiat rondele. Se mai lasa cateva minute sa se caleasca ceapa si carnea sa fie rumenita si se adauga orezul ( scurs si strecurat). Se amesteca bine si se mai lasa 2-3 minute pe foc. Se serveste cald cu salata de varza sau muraturi.',
+    store: 'Kaufland'
+  };
   map: google.maps.Map | undefined;
   
   latitude: number = 0;
@@ -31,7 +41,7 @@ export class AppMapComponent implements OnInit {
   directionsService: any;
   directionsRenderer: any;
   
-  constructor(){
+  constructor(private route: ActivatedRoute, private recipeService: RecipeService){
   }
   
   ngOnInit() {
@@ -39,6 +49,9 @@ export class AppMapComponent implements OnInit {
       this.geoCoder = new google.maps.Geocoder;
       this.setCurrentLocation();
     });
+
+    // this.recipeId = this.route.snapshot.paramMap.get('id')!;
+    // this.recipe = this.recipeService.recipes.find(recipe => recipe.id === this.recipeId)!;
   }
 
   private setCurrentLocation() {
