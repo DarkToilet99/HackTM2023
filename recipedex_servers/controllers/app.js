@@ -77,26 +77,44 @@ const findStoresWithinDistance = async (req,res) => {
 }
 
 
-const infoAggregate = async (Lat, Lon, Distance, recipe_id) => {
-    let stores_within_distance = await _findStoresWithinDistance(Lat, Lon, Distance);
-    let recipe_ingredients_ids = await _getRecipeIngredientsIds(recipe_id);
-    for (let i = 0; i < stores_within_distance.length; i++) {
-      let found_ingredients_list = [];
-      for(let ingredient_ids in recipe_ingredients_ids) {
-        let found_ingredients = await _getStoreProductsByCatprodId(stores_within_distance[i]["id"], recipe_ingredients_ids[ingredient_ids]);
-        found_ingredients_list.push(found_ingredients);
+// const infoAggregate = async (Lat, Lon, Distance, recipe_id) => {
+//     let stores_within_distance = await _findStoresWithinDistance(Lat, Lon, Distance);
+//     let recipe_ingredients_ids = await _getRecipeIngredientsIds(recipe_id);
+//     for (let i = 0; i < stores_within_distance.length; i++) {
+//       let found_ingredients_list = [];
+//       for(let ingredient_ids in recipe_ingredients_ids) {
+//         let found_ingredients = await _getStoreProductsByCatprodId(stores_within_distance[i]["id"], recipe_ingredients_ids[ingredient_ids]);
+//         found_ingredients_list.push(found_ingredients);
  
-      }
-      stores_within_distance[i]["found_ingredients_list"] = found_ingredients_list;
-      if(i >= 3) {
-        break;
-      }
+//       }
+//       stores_within_distance[i]["found_ingredients_list"] = found_ingredients_list;
+//       if(i >= 3) {
+//         break;
+//       }
+//     }
+    
+//     return stores_within_distance;
+// }
+
+const infoAggregate = async (Lat, Lon, Distance, recipe_id) => {
+  let stores_within_distance = await _findStoresWithinDistance(Lat, Lon, Distance);
+  let recipe_ingredients_ids = await _getRecipeIngredientsIds(recipe_id);
+  
+  let promises = [];
+  for (let i = 0; i < stores_within_distance.length; i++) {
+    let found_ingredients_list = [];
+    for (let ingredient_ids in recipe_ingredients_ids) {
+      let promise = _getStoreProductsByCatprodId(stores_within_distance[i]["id"], recipe_ingredients_ids[ingredient_ids]);
+      promises.push(promise);
     }
     
-    return stores_within_distance;
+    let found_ingredients = await Promise.all(promises);
+    stores_within_distance[i]["found_ingredients_list"] = found_ingredients;
+    
+  }
+  
+  return stores_within_distance;
 }
-
-
 
 const getStoresWithProducts = async(req, res) => {
   let stores_with_products = await infoAggregate(req.query.Lat, req.query.Lon, req.query.distanceFrom, req.query.recipeId);
