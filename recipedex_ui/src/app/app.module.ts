@@ -8,6 +8,11 @@ import { RecipesTableComponent } from './recipes-table/recipes-table.component';
 import { RecipeDetailsComponent } from './recipe-details/recipe-details.component';
 import { AppMapComponent } from './map/map.component';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { OrderListModule } from 'primeng/orderlist';
+import { TagModule } from 'primeng/tag';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+
 
 @NgModule({
   declarations: [
@@ -21,7 +26,11 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     GoogleMapsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+    OrderListModule,
+    TagModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]
