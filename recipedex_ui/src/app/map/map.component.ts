@@ -15,7 +15,7 @@ export class AppMapComponent implements OnInit {
   longitude: number = 0;
   zoom: number = 0;
 
-  center: google.maps.LatLngLiteral = {} as google.maps.LatLngLiteral;
+  center: google.maps.LatLng = {} as google.maps.LatLng;
   currentLocationMarker : google.maps.Marker | undefined;
 
   circle: google.maps.Circle = {} as google.maps.Circle;
@@ -27,7 +27,9 @@ export class AppMapComponent implements OnInit {
     apiKey: environment.mapApiKey,
     version: "weekly",
   });
-  
+
+  directionsService: any;
+  directionsRenderer: any;
   
   constructor(){
   }
@@ -44,32 +46,44 @@ export class AppMapComponent implements OnInit {
       navigator.geolocation.getCurrentPosition((position) => {
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
-        this.center = { lat: this.latitude, lng: this.longitude }
+        this.center = new google.maps.LatLng(this.latitude, this.longitude)
         this.zoom = 8;
-        this.getAddress(this.latitude, this.longitude);
-        
+        this.initMap(this.latitude, this.longitude);
       });
     }
   }
 
-  getAddress(latitude : any, longitude : any) {
+  initDirections() {
+     this.directionsService = new google.maps.DirectionsService;
+     this.directionsRenderer = new google.maps.DirectionsRenderer;
+
+     this.directionsRenderer.setMap(this.map);
+  }
+
+  initMap(latitude : any, longitude : any) {
     this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, async (results : any, status : any) => {
       if (status === 'OK') {
         if (results[0]) {
+
           this.zoom = 13;
           this.address = results[0].formatted_address;
+
           const { Map } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
+
           this.map = new Map(document.getElementById("map") as HTMLElement, {
             center: this.center,
             zoom: this.zoom,
           });
+
           this.currentLocationMarker = new google.maps.Marker({
             position: new google.maps.LatLng(this.latitude, this.longitude),
             map: this.map!,
             title: 'current location'
         });
-
+        
+        this.initDirections();
         this.drawPolygon();
+        
         } else {
           window.alert('No results found');
         }
@@ -89,5 +103,22 @@ export class AppMapComponent implements OnInit {
     this.circle.setMap(this.map!)
   }
 
+
+  calcRoute(a: google.maps.LatLng,b: google.maps.LatLng) {
+    var request = {
+        origin: a,
+        destination: b,
+        // Note that JavaScript allows us to access the constant
+        // using square brackets and a string value as its
+        // "property."
+        travelMode: google.maps.TravelMode["DRIVING"]
+    };
+    this.directionsService.route(request, (response: any, status: any) => {
+      if (status == 'OK') {
+        this.directionsRenderer.setDirections(response);
+      }
+    });
+
+  }
+
 }
-  
