@@ -1,29 +1,31 @@
 <div id="map">
 </div>
-<div class="recipe-details-container">
+<div class="recipe-details-container ">
     <div class="recipe-details">
-        <div class="recipe-title">
-            <h2 class="title" title="Test">{{recipe.name}}</h2>
-        </div>
-        <div class="recipe-description">
-            <div class="recipe-ingredients">
-                <p class="section-title">Recipe ingredients</p>
-                <ul>
-                    <li *ngFor="let ingredient of recipe.ingredients">
-                      <label>
-                        <input type="checkbox" [(ngModel)]="ingredient.checked">
-                        {{ ingredient.name }}
-                      </label>
-                    </li>
-                  </ul>
+        <div class="scroll">
+            <div class="recipe-title">
+                <h2 class="title" title="Test">{{recipe.name}}</h2>
             </div>
-            <div class="recipe-location">
-                <p class="section-title">Recomended store</p>
-                <p class="section-info">{{recipe.store}}</p>
+            <div class="recipe-description">
+                <div class="recipe-ingredients">
+                    <p class="section-title">Recipe ingredients</p>
+                    <ul>
+                        <li *ngFor="let ingredient of recipe.ingredients">
+                          <label>
+                            <input type="checkbox" [(ngModel)]="ingredient.checked">
+                            {{ ingredient.name }}
+                          </label>
+                        </li>
+                      </ul>
+                </div>
+                <div class="recipe-location">
+                    <p class="section-title">Recomended store</p>
+                    <p class="section-info">{{recipe.store}}</p>
+                </div>
+                <p class="section-title">Recipe description</p>
+                <p class="section-info">{{recipe.description}}
+                </p>
             </div>
-            <p class="section-title">Recipe description</p>
-            <p class="section-info">{{recipe.description}}
-            </p>
         </div>
     </div>    
 </div>
