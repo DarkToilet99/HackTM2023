@@ -95,13 +95,16 @@ export class SearchCardComponent {
       navigator.geolocation.getCurrentPosition((position) => {
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
+
+		this.storeService.getAllStores(this.latitude,this.longitude,this.distance).subscribe({
+			next: (res: Store[]) => {
+			  this.storeList = res;
+			}
+		})
+
       });
     }
-    this.storeService.getAllStores(this.latitude,this.longitude,this.distance).subscribe({
-        next: (res: Store[]) => {
-          this.storeList = res;
-        }
-    })
+    
   }
   
 }
