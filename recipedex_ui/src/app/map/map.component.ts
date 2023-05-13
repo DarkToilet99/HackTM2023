@@ -15,7 +15,7 @@ export class AppMapComponent implements OnInit {
   public recipeId = '';
   public recipe: Recipe = {} as Recipe;
   map: google.maps.Map | undefined;
-  
+  recommendedStoresList: any[] = [];
   latitude: number = 0;
   longitude: number = 0;
   zoom: number = 0;
@@ -64,15 +64,6 @@ export class AppMapComponent implements OnInit {
         this.longitude = position.coords.longitude;
         this.center = new google.maps.LatLng(this.latitude, this.longitude)
         this.zoom = 8;
-        this.storeService.getStoresForRecipe(this.latitude,this.longitude,1000,this.recipeId).subscribe({
-          next: (result: any)=>{
-            console.log(result);
-            this.currentLocationMarker?.setMap(null);
-            this.circle.setMap(null);
-            //TODO: will make selection of store possible
-            this.calcRoute(this.center, new google.maps.LatLng(result[0].location.Lat,result[0].location.Lon));
-          }
-        })
         this.initMap(this.latitude, this.longitude);
         
       });
@@ -109,6 +100,19 @@ export class AppMapComponent implements OnInit {
         
         this.initDirections();
         this.drawPolygon();
+
+
+
+        this.storeService.getStoresForRecipe(this.latitude,this.longitude,1000,this.recipeId).subscribe({
+          next: (result: any)=>{
+            console.log(result);
+            this.recommendedStoresList = result;
+            this.currentLocationMarker?.setMap(null);
+            this.circle.setMap(null);
+            //TODO: will make selection of store possible
+            this.calcRoute(this.center, new google.maps.LatLng(result[0].location.Lat,result[0].location.Lon));
+          }
+        })
         
         } else {
           window.alert('No results found');
