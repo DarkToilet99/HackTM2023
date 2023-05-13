@@ -4,4 +4,6 @@ const router = express.Router();
 
 router.get('/',controller.findStoresWithinDistance);
 
+router.get('/products',controller.findStoresWithinDistance);
+
 module.exports = router;

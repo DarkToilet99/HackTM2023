@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { GoogleMapsModule } from '@angular/google-maps'
+import { NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SearchCardComponent } from './search-card/search-card.component';
@@ -30,7 +31,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     HttpClientModule,
     OrderListModule,
     TagModule,
-    DragDropModule
+    DragDropModule,
+    NgbTypeaheadModule
   ],
   providers: [],
   bootstrap: [AppComponent]
