@@ -1,14 +1,3 @@
-#map {
-    height: 100%;
-  }
-html, body {
-height: 100%;
-margin: 0;
-padding: 0;
-}
-
-app-recipe-search{
-    position: fixed;
-    right: 75%;
-    bottom: 20%;
+.container {
+    height: 100dvh;
 }

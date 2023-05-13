@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RecipeSearchComponent } from './recipe-search.component';
+import { RecipeSearchComponent } from './map.component';
 
 describe('RecipeSearchComponent', () => {
   let component: RecipeSearchComponent;
