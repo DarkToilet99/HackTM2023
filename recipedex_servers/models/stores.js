@@ -1,6 +1,14 @@
 const mongoose = require("mongoose");
 
 const StoreSchema = new mongoose.Schema({
+  _id : {
+    type : String,
+    required : true
+  },
+  found_ingredients_list : {
+    type : Array,
+    required : false
+  },
   addrstring: {
     type: String,
     required: false

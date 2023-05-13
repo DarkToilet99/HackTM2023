@@ -4,13 +4,13 @@ const express = require('express');
 const mongoose = require("mongoose");
 const appRoute = require('./routes/app');
 const http = require('http');
+const router = express();
+const cors = require('cors')
 
 router.use(cors())
 dotenv.config();
-const router = express();
 
 router.use('/', appRoute);
-const cors = require('cors')
 
 const httpServer = http.createServer(router);
 
