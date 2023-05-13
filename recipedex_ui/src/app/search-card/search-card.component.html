@@ -3,7 +3,15 @@
         <h1 class="title">Search ingrediens, find your recipe</h1>
     </div>
     <form class="search-form">
-        <input type="text" class="search-input" placeholder="Search">
+        <input type="text" class="search-input" 
+            placeholder="Search" 
+            id="typeahead-format"
+            type="text"
+            class="form-control"
+            [(ngModel)]="model"
+            [ngbTypeahead]="search"
+            [resultFormatter]="formatter"
+        >
         <button type="submit" class="search-button"><i class="bi bi-search"></i></button>
     </form>
     <div class="data-container">
