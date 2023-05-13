@@ -1,0 +1,46 @@
+.recipe-details {
+    overflow-y: scroll;
+    flex-direction: column;
+    height: 80%;
+    width: 40%;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 60px;
+    backdrop-filter: blur(4px) saturate(100%);
+    color: black;
+    z-index: 100;
+    position: fixed;
+    top: 10%;
+    left: 5%;
+    z-index: 111;
+}
+
+.recipe-title {
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+   line-height: 100px;
+    color: black;
+    font-size: 40px;
+    font-weight: 700;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* set the maximum number of lines to two */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+
+.section-title {
+    color: black;
+    font-size: 20px;
+    font-weight: 700;
+    margin-left: 10px;
+}
+
+.section-info {
+    margin-left: 10px;
+}
+
+ul li {
+    list-style-type: none;
+}

@@ -13,5 +13,8 @@
         <tr>
             <td>Piept de pui la gratar</td>
         </tr>
+        <tr *ngFor="let recipeTitle of recipesTitle">
+            <td>{{ recipeTitle.title }}</td>
+        </tr>
     </table>
 </div>

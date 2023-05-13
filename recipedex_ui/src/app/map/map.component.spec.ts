@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RecipeSearchComponent } from './map.component';
+import { AppMapComponent } from './map.component';
 
-describe('RecipeSearchComponent', () => {
-  let component: RecipeSearchComponent;
-  let fixture: ComponentFixture<RecipeSearchComponent>;
+describe('AppMapComponent', () => {
+  let component: AppMapComponent;
+  let fixture: ComponentFixture<AppMapComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [RecipeSearchComponent]
+      declarations: [AppMapComponent]
     });
-    fixture = TestBed.createComponent(RecipeSearchComponent);
+    fixture = TestBed.createComponent(AppMapComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
