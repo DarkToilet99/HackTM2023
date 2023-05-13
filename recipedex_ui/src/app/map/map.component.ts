@@ -24,7 +24,7 @@ export class AppMapComponent implements OnInit {
   latitude: number = 0;
   longitude: number = 0;
   zoom: number = 0;
-
+  cardVisibility: boolean = true;
   center: google.maps.LatLng = {} as google.maps.LatLng;
   currentLocationMarker : google.maps.Marker | undefined;
 
