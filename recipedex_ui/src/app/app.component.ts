@@ -1,6 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Loader } from "@googlemaps/js-api-loader"
-import { environment } from 'src/environments/environment.development';
+import { Component,OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -9,12 +7,9 @@ import { environment } from 'src/environments/environment.development';
 })
 export class AppComponent implements OnInit {
   
-  map: google.maps.Map | undefined;
-  loader = new Loader({
-    apiKey: environment.mapApiKey,
-    version: "weekly",
-  });
-  
+
+  constructor(){
+  }
   
   ngOnInit() {
   }
