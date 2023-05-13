@@ -1,0 +1,58 @@
+{
+    "recipes": [
+      {
+        "name": "Pizza cu blat pufos cu de toate",
+        "ingredients": [
+          "faina alba",
+          "apa",
+          "sare",
+          "ulei",
+          "drojdie  proaspata",
+          "salam",
+          "cascaval",
+          "rosii",
+          "ardei",
+          "masline",
+          "ciuperci",
+          "ceapa",
+          "usturoi",
+          "oregano",
+          "busuioc",
+          "piper"
+        ],
+        "instructions": "Pentru aluat amestecam apa calduta cu drojdia si cu zaharul, apoi adaugam uleiul, faina si sarea. Framantam aluatul si il lasam la dospit 40-50 de minute la un loc caldut, acoperit cu o carpa curata. Fiind vorba despre o pizza cu de toate sau de o pizza cu ce avem, punem TOT. Eu am pus carnaciori, sunca, salam, bacon, rosii, ceapa, porumb, ardei, rosii, telemea si cascaval. Evident ca nu puteau lipsi maslinele. Se mai pot pune ciuperci, dovlecei, vinete, praz sau chiar slanina sau sunculita de casa. Chiar si ceapa calita se punea.",
+        "store": "Lidl"
+      },
+      {
+        "name":"Sushi",
+        "ingredients": [
+          "orez",
+          "sare",
+          "zahar",
+          "otet",
+          "alge",
+          "ton",
+          "somon",
+          "castravete",
+          "avocado",
+          "susan",
+          "wasabi",
+          "sos de soia"
+        ],
+        "instructions": "Spălăm orezul în minim 7 ape, până apa în care îl spălăm devine curată. Punem orezul într-o oala cu capac, adaugăm apa peste el și îl lăsăm să stea cu capacul pus timp de 30 de minute. Fierbem orezul cu capacul pus timp de 9 minute pe treapta 7 (din 12) a ochiului mare de la aragaz, după care încă 4 minute pe treapta maximă (12) iar apoi oprim focul și lăsăm orezul să stea cu capacul pus timp de 15 minute. Adaugăm sarea și mierea în oțetul de orez și amestecăm până se dizolvă, după care adaugăm o bucățică de kombu în el de aproximativ 5×5 cm. Punem orezul pe o suprafață plană (tava de lemn sau plastic) și adaugăm tot oțetul de orez preparat anterior. Amestecăm orezul cu oțetul prin mișcări de taiere (orezul nu trebuie presat), după care îl aerisim cu un evantai, până ce ajunge la o temperatură similară cu cea a corpului uman. Acum orezul este gata, așa că trebuie să ne pregătim zona de rulat sushi. Pentru asta aveți nevoie de: un fund de lemn, o rolă de bambus pentru sushi (sushi-mat) și un bol cu apa curată la îndemână. Pregătim și ingredientele cu care vom umple rolurile de sushi, care rămân la alegerea voastră. Nouă ne place în mod special sushi cu avocado, castravete și somon, eventual și tofu sau surimi (însă nu recomandăm des deoarece nu este foarte sănătos). Mai avem nevoie de fâșiile de algă nori, pe care le putem folosi întregi sau tăiate în două (caz în care folosim o jumătate pentru o rola de sushi). Sunteți gata să rulam primul sushi? Așezați fâșia de nori peste rola de bambus și putem începe. Ne udam mâinile cu apa și luăm o mână de orez, cât încape în căușul palmei, pe care îl întindem pe întreaga porțiune inferioară a fâșiei de nori, cât mai bine distribuit (dacă folosiți o jumătate de nori întindeți orezul uniform pe întreaga suprafață a algei). Cu un deget ud, umezim capătul superior al fâșiei de nori, pentru a-i permite rolei să se lipească la capete, asemenea unui plic, atunci când facem rola de sushi. Așezam și ingredientele tăiate feliuțe peste orez și începem să rulăm primul sushi. Ideea este sa îl strângeți cât mai tare folosindu-vă de rola de bambus, astfel încât ingredientele să fie foarte bine strânse în interiorul rolei de sushi. Forma pe care dorim să o obținem nu este perfect cilindrică, ci mai degrabă pătrată, iar pentru asta ne folosim de sushi mat. Am strâns bine de tot rola de maki sushi și acum o punem deoparte până terminăm de rulat și restul. Urmează tăierea rolelor de sushi. Pentru asta aveți nevoie de un cuțit foarte ascuțit și un fund de lemn, desigur. Rola de sushi se taie simplu: primul pas este să o tăiem în două jumătăți egale, pe care le tăiem la rândul lor în 3 bucăți egale. Dintr-o rolă vom obține, astfel, 6 bucăți de sushi maki. Et voila! Sushi-ul este gata! Acum îl putem servi cu sos de soia, wasabi și ghimbir murat. Poftă bună!",
+        "store": "Mega Image"
+      },
+      {
+        "name": "Gris cu lapte",
+        "ingredients": [
+          "lapte",
+          "gris",
+          "zahar",
+          "unt",
+          "esenta de vanilie"
+        ],
+        "instructions": "Punem laptele la fiert intr-o cratita. Cand incepe sa fiarba, adaugam grisul in ploaie, amestecand continuu cu un tel. Lasam pe foc pana se ingroasa, amestecand continuu. Cand s-a ingrosat, adaugam zaharul si esenta de vanilie. Amestecam bine si luam cratita de pe foc. Adaugam untul si amestecam pana se topeste. Turnam in boluri si servim cu scortisoara.",
+        "store": "Kaufland"
+      }
+    ]
+  }
