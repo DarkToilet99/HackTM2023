@@ -17,14 +17,6 @@ export class AppComponent implements OnInit {
   
   
   ngOnInit() {
-    
-    this.loader.load().then(async () => {
-      const { Map } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
-      this.map = new Map(document.getElementById("map") as HTMLElement, {
-        center: { lat: 45.7552446, lng: 21.2127462 },
-        zoom: 13,
-      });
-    });
   }
 
 }

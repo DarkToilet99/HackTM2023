@@ -1,12 +1,42 @@
 <div class="card-container">
     <div class="card-title">
-        <h1>Search your recipe</h1>
+        <h1 class="title">Search ingrediens, find your recipe</h1>
     </div>
-    <div class="search-recipe">
-        <form class="search-form">
-            <input type="text" class="search-input" placeholder="Search">
-            <button type="submit" class="search-button"><i class="bi bi-search"></i></button>
-        </form>
+    <form class="search-form">
+        <input type="text" class="search-input" placeholder="Search">
+        <button type="submit" class="search-button"><i class="bi bi-search"></i></button>
+    </form>
+    <div class="data-container">
+        <h2 class="title">Filters</h2>
+        <div class="filters-container">
+            <div class="filter-recipes">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Location
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" href="#">less then 1km</a>
+                      <a class="dropdown-item" href="#">1km</a>
+                      <a class="dropdown-item" href="#">2km</a>
+                    </div>
+                </div>
+            </div>
+            <div class="filter-recipes">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Price
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" href="#"></a>
+                      <a class="dropdown-item" href="#">less then 100 lei</a>
+                      <a class="dropdown-item" href="#">100-200 lei</a>
+                      <a class="dropdown-item" href="#">200-300 lei</a>
+                      <a class="dropdown-item" href="#">300-400 lei</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <recipes-table></recipes-table>
     </div>
 </div>
 
