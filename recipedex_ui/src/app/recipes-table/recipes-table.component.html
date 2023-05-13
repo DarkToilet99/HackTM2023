@@ -1,1 +1,20 @@
-<p>recipes-table works!</p>
+<div class="recipe-entry">
+    <table class="table">
+        <!-- For each recipe title, show title in table -->
+        <tr>
+            <td>Orez cu piept de pui</td>
+        </tr>
+        <tr>
+            <td>Piept de pui cu usturoi</td>
+        </tr>
+        <tr>
+            <td>Pizza cu piept de pui</td>
+        </tr>
+        <tr>
+            <td>Piept de pui la gratar</td>
+        </tr>
+        <tr *ngFor="let recipeTitle of recipesTitle">
+            <td>{{ recipeTitle.title }}</td>
+        </tr>
+    </table>
+</div>
