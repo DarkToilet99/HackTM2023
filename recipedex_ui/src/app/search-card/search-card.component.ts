@@ -77,6 +77,18 @@ export class SearchCardComponent {
   longitude: number = 0;
   distance: number = 1000;
 
+  public model: any;
+  formatter = (result: string) => result.toUpperCase();
+  search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>) =>
+		text$.pipe(
+			debounceTime(200),
+			distinctUntilChanged(),
+			map((term) =>
+				term === '' ? [] : states.filter((v) => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10),
+			),
+		);
+
+
   constructor(private storeService: StoreService){
     if ('geolocation' in navigator) {
       this.storeList.length
@@ -91,17 +103,5 @@ export class SearchCardComponent {
         }
     })
   }
-  public model: any;
-
-	formatter = (result: string) => result.toUpperCase();
-
-	search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>) =>
-		text$.pipe(
-			debounceTime(200),
-			distinctUntilChanged(),
-			map((term) =>
-				term === '' ? [] : states.filter((v) => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10),
-			),
-		);
-
+  
 }
