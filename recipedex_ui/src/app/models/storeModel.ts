@@ -1,7 +1,7 @@
 export interface Store{
     addrstring: string;
     zipcode: string;
-    location: string;
+    location: {"Lat":number,"Lon":number};
     wkt: string;
     uatid: string;
     name : string;

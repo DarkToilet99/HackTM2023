@@ -8,10 +8,12 @@ import { SearchCardComponent } from './search-card/search-card.component';
 import { RecipesTableComponent } from './recipes-table/recipes-table.component';
 import { AppMapComponent } from './map/map.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { OrderListModule } from 'primeng/orderlist';
 import { TagModule } from 'primeng/tag';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { HttpinterceptInterceptor } from './services/httpintercept.interceptor';
+import { DataViewModule } from 'primeng/dataview';
 
 
 @NgModule({
@@ -30,9 +32,14 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     OrderListModule,
     TagModule,
     DragDropModule,
-    NgbTypeaheadModule
+    NgbTypeaheadModule,
+    DataViewModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: HttpinterceptInterceptor,
+    multi: true
+   }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
