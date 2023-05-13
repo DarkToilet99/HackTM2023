@@ -7,10 +7,13 @@ const http = require('http');
 const router = express();
 const cors = require('cors')
 
+
 router.use(cors())
 dotenv.config();
 
+
 router.use('/', appRoute);
+const cors = require('cors')
 
 const httpServer = http.createServer(router);
 

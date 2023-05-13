@@ -11,16 +11,12 @@ import { Observable } from 'rxjs';
 export class HttpinterceptInterceptor implements HttpInterceptor {
 
   constructor() {}
-
-  
   
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    let headers = ['Access-Control-Allow-Origin:*',
-    'Access-Control-Allow-Methods:GET, POST, PUT, DELETE',
-    'Access-Control-Allow-Headers:Content-Type']
-    console.log("INTERCEPTED");
-    request.headers.append("headers", headers);
-    request.headers.set("Access-Control-Allow-Origin", "*")
+    request.headers.set("Access-Control-Allow-Origin", "*");
+    request.headers.set("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    request.headers.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    request.headers.set("Access-Control-Expose-Headers", "X-Custom-Header");
     return next.handle(request);
   }
 }

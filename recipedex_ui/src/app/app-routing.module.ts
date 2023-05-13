@@ -5,7 +5,8 @@ import { AppMapComponent } from './map/map.component';
 
 const routes: Routes = [
   { path: '', component: SearchCardComponent, pathMatch: 'full' },
-  { path: 'map', component: AppMapComponent, pathMatch: 'full' } 
+  { path: 'map/:id', component: AppMapComponent },
+  {path: '**', component: SearchCardComponent, pathMatch: 'full'}
 ];
 
 @NgModule({
