@@ -45,12 +45,6 @@ export class AppMapComponent implements OnInit {
       }
     })
 
-    storeService.getRecipeById(this.recipeId).subscribe({
-      next: (recipe: Recipe)=>{
-        console.log(recipe)
-        this.recipe = recipe;
-      }
-    })
   }
   
   ngOnInit() {
@@ -70,7 +64,17 @@ export class AppMapComponent implements OnInit {
         this.longitude = position.coords.longitude;
         this.center = new google.maps.LatLng(this.latitude, this.longitude)
         this.zoom = 8;
+        this.storeService.getStoresForRecipe(this.latitude,this.longitude,1000,this.recipeId).subscribe({
+          next: (result: any)=>{
+            console.log(result);
+            this.currentLocationMarker?.setMap(null);
+            this.circle.setMap(null);
+            //TODO: will make selection of store possible
+            this.calcRoute(this.center, new google.maps.LatLng(result[0].location.Lat,result[0].location.Lon));
+          }
+        })
         this.initMap(this.latitude, this.longitude);
+        
       });
     }
   }

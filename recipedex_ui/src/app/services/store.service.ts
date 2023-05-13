@@ -31,8 +31,8 @@ export class StoreService {
     return this.httpClient.get<any>(url);
   }
 
-  getStoresForRecipe(lat: number, long: number, distance: number, id: number): Observable<any>{
-    let url = environment.baseApiUrl + "/getStoresWithProducts/" + "?Lat="+ lat +"&Lon="+ long +"&distanceFrom=" + distance;
+  getStoresForRecipe(lat: number, long: number, distance: number, id: string): Observable<any>{
+    let url = environment.baseApiUrl + "getStoresWithProducts/" + "?Lat="+ lat +"&Lon="+ long +"&distanceFrom=" + distance +"&recipeId=" + id;
     return this.httpClient.get<any>(url);
   }
 }
