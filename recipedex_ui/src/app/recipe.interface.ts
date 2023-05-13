@@ -1,8 +1,8 @@
 export interface Recipe {
-    id: string;
+    _id: string;
     name: string;
-    description: string;
-    ingredients: Ingredient[];
+    instructions: string;
+    ingredients: string[];
     store: string;
 }
 

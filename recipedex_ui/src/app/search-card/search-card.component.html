@@ -4,22 +4,41 @@
     <div class="card-title">
         <h1 class="title neonText">Shop2Cook, One-stop shop for your recipes.</h1>
     </div>
-
-    <div style="width:40%;">
-        <input type="text" class="search-input" 
-        placeholder="Search" 
-        id="typeahead-format"
-        type="text"
-        class="form-control"
-        [(ngModel)]="model"
-        [ngbTypeahead]="search"
-        [resultFormatter]="formatter"
-        name="search-product"
-    >
-    </div>
-
+    <form class="search-form">
+        <input type="text"
+            placeholder="Search" 
+            (keyup)="onKey($event)">
+    </form>
     <div class="data-container">
-        
+        <h2 class="title">Filters</h2>
+        <div class="filters-container">
+            <div class="filter-recipes">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Location
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" href="#">less then 1km</a>
+                      <a class="dropdown-item" href="#">1km</a>
+                      <a class="dropdown-item" href="#">2km</a>
+                    </div>
+                </div>
+            </div>
+            <div class="filter-recipes">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Price
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" href="#"></a>
+                      <a class="dropdown-item" href="#">less then 100 lei</a>
+                      <a class="dropdown-item" href="#">100-200 lei</a>
+                      <a class="dropdown-item" href="#">200-300 lei</a>
+                      <a class="dropdown-item" href="#">300-400 lei</a>
+                    </div>
+                </div>
+            </div>
+        </div>
         <recipes-table></recipes-table>
     </div>
 
@@ -38,7 +57,7 @@
                         <span class="vertical-align-middle line-height-1">{{ store.zipcode }}</span>
                     </div>
                     <div class="flex flex-column align-items-end">
-                        <h6 class="mb-2">{{ 'lat:' + store.location.Lat!=undefined? store.location.Lat: '0' + ' long:' + store.location.Lon!= undefined? store.location.Lon: '0' }}</h6>
+                        <h6 class="mb-2">{{ 'lat:' + (store.location?.Lat!=undefined? store.location.Lat: '0') + ' long:' + (store.location?.Lon!=undefined? store.location.Lon: '0') }}</h6>
                     </div>
                 </div>
             </ng-template>
@@ -58,15 +77,14 @@
     placeholder="Search" 
     id="typeahead-format"
     type="text"
-    [ngbTypeahead]="search"
-    [resultFormatter]="formatter"
     name="search-product"
+    (keyup)="onKey($event)"
 >
 </div>
 
 <div class="a-center">
     <div class="a-card" style="padding: 45px;">
-        <recipes-table></recipes-table>
+        <recipes-table [recipes]="recipes" ></recipes-table>
     </div>
 
 </div>

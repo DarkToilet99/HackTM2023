@@ -4,6 +4,7 @@ import { Loader } from "@googlemaps/js-api-loader"
 import { environment } from 'src/environments/environment.development';
 import { RecipeService } from '../recipe.service';
 import { Recipe } from '../recipe.interface';
+import { StoreService } from '../services/store.service';
 
 @Component({
   selector: 'app-map',
@@ -12,15 +13,9 @@ import { Recipe } from '../recipe.interface';
 })
 export class AppMapComponent implements OnInit {
   public recipeId = '';
-  public recipe: Recipe = {
-    id: '1',
-    name: 'Pilaf cu pui',
-    ingredients: [{name: 'orez', checked: false}, {name: 'piept de pui', checked: true}, {name: 'ceapa', checked: false}, {name: 'morcov', checked: false}, {name: 'ulei de masline', checked: true}, {name: 'sare', checked: false}, {name: 'piper', checked: false}],
-    description: 'Se pune pe foc o oala cu apa si putina sare. Cand clocoteste apa se pune orezul si se lasa sa fiarba la foc mic. In timp ce fierbe pieptul de pui se taie bucatele se condimenteaza si se prajeste in 3-4 linguri de ulei de masline. Cand a scazut apa si incepe sa se rumeneasca se pune ceapa taiata rondele si daca doriți si morcovul taiat rondele. Se mai lasa cateva minute sa se caleasca ceapa si carnea sa fie rumenita si se adauga orezul ( scurs si strecurat). Se amesteca bine si se mai lasa 2-3 minute pe foc. Se serveste cald cu salata de varza sau muraturi.',
-    store: 'Kaufland'
-  };
+  public recipe: Recipe = {} as Recipe;
   map: google.maps.Map | undefined;
-  
+  recommendedStoresList: any[] = [];
   latitude: number = 0;
   longitude: number = 0;
   zoom: number = 0;
@@ -41,7 +36,15 @@ export class AppMapComponent implements OnInit {
   directionsService: any;
   directionsRenderer: any;
   
-  constructor(private route: ActivatedRoute, private recipeService: RecipeService){
+  constructor(private route: ActivatedRoute, private storeService: StoreService){
+    this.recipeId = this.route.snapshot.paramMap.get('id')!;
+    storeService.getRecipeById(this.recipeId).subscribe({
+      next: (recipe: Recipe)=>{
+        console.log(recipe)
+        this.recipe = recipe;
+      }
+    })
+
   }
   
   ngOnInit() {
@@ -50,7 +53,7 @@ export class AppMapComponent implements OnInit {
       this.setCurrentLocation();
     });
 
-    this.recipeId = this.route.snapshot.paramMap.get('id')!;
+    
     // this.recipe = this.recipeService.recipes.find(recipe => recipe.id === this.recipeId)!;
   }
 
@@ -62,6 +65,7 @@ export class AppMapComponent implements OnInit {
         this.center = new google.maps.LatLng(this.latitude, this.longitude)
         this.zoom = 8;
         this.initMap(this.latitude, this.longitude);
+        
       });
     }
   }
@@ -96,6 +100,19 @@ export class AppMapComponent implements OnInit {
         
         this.initDirections();
         this.drawPolygon();
+
+
+
+        this.storeService.getStoresForRecipe(this.latitude,this.longitude,1000,this.recipeId).subscribe({
+          next: (result: any)=>{
+            console.log(result);
+            this.recommendedStoresList = result;
+            this.currentLocationMarker?.setMap(null);
+            this.circle.setMap(null);
+            //TODO: will make selection of store possible
+            this.calcRoute(this.center, new google.maps.LatLng(result[0].location.Lat,result[0].location.Lon));
+          }
+        })
         
         } else {
           window.alert('No results found');

@@ -12,18 +12,18 @@
                     <ul>
                         <li *ngFor="let ingredient of recipe.ingredients">
                           <label>
-                            <input type="checkbox" [(ngModel)]="ingredient.checked">
-                            {{ ingredient.name }}
+                            <input type="checkbox">
+                            {{ ingredient }}
                           </label>
                         </li>
                       </ul>
                 </div>
                 <div class="recipe-location">
                     <p class="section-title">Recomended store</p>
-                    <p class="section-info">{{recipe.store}}</p>
+                    <p class="section-info">{{recommendedStoresList[0]?.name}}</p>
                 </div>
                 <p class="section-title">Recipe description</p>
-                <p class="section-info">{{recipe.description}}
+                <p class="section-info">{{recipe.instructions}}
                 </p>
             </div>
         </div>

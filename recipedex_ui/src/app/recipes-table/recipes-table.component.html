@@ -1,7 +1,7 @@
 <div class="recipe-entry">
     <table class="table">
         <tr *ngFor="let recipe of recipes">
-            <td routerLink="map/{{recipe.id}}">{{ recipe.name }}</td>
+            <td routerLink="map/{{recipe._id}}">{{ recipe.name }}</td>
         </tr>
     </table>
 </div>

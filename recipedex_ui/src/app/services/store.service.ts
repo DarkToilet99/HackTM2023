@@ -15,4 +15,24 @@ export class StoreService {
    let url = environment.baseApiUrl + "?Lat="+ lat +"&Lon="+ long +"&distanceFrom=" + distance;
    return this.httpClient.get<Store[]>(url);
   }
+
+  getAllRecipes(): Observable<any>{
+    let url = environment.baseApiUrl + "allRecipes";
+    return this.httpClient.get<any>(url);
+  }
+
+  getRecipeById(id:string): Observable<any>{
+    let url = environment.baseApiUrl + "recipe?recipeId=" + id;
+    return this.httpClient.get<any>(url);
+  }
+
+  getMatchingRecipes(body: string): Observable<any>{
+    let url = environment.baseApiUrl + "search/?search=" + body;
+    return this.httpClient.get<any>(url);
+  }
+
+  getStoresForRecipe(lat: number, long: number, distance: number, id: string): Observable<any>{
+    let url = environment.baseApiUrl + "getStoresWithProducts/" + "?Lat="+ lat +"&Lon="+ long +"&distanceFrom=" + distance +"&recipeId=" + id;
+    return this.httpClient.get<any>(url);
+  }
 }
