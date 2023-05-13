@@ -5,11 +5,15 @@
   flex-direction: column;
   align-items: center;
   padding: 50px;
-  background-image: linear-gradient(rgba(0, 8, 51, 0.493), rgba(0,8,51,0.9)), url("../../assets/store-map.png");
+  //background-image: linear-gradient(rgba(0, 8, 51, 0.493), rgba(0,8,51,0.9)), url("../../assets/store-map.png");
+  background-image: radial-gradient( circle 815px at 23.4% -21.8%,  rgba(9,29,85,1) 0.2%, rgba(0,0,0,1) 100.2% );
+  
+  
+  
 }
 
 .card-title {
-    color: black;
+    color: white;
     font-size: 40px;
     font-weight: 700;
     margin-bottom: 20px;
@@ -32,15 +36,6 @@
     box-shadow: none;
 }
 
-.search-form input {
-    background: transparent;
-    flex: 1;
-    border: 0;
-    outline: none;
-    padding: 24px 20px;
-    font-size: 20px;
-    color: #cac7ff;
-}
 
 ::placeholder {
     color: #cac7ff;
@@ -60,7 +55,7 @@
 }
 
 .title {
-    color: black;
+    color:  #FFFEFC;
 }
 
 .filters-container {
@@ -74,4 +69,72 @@
 .data-container {
     padding-top: 20px;
     padding-bottom: 20px; 
+}
+
+
+
+.a-container {
+    margin:0 20%;
+    z-index:10;
+}
+
+.a-container-title {
+    text-align:center;
+    letter-spacing: 3px;
+    margin:15px;
+    color:black;
+    font-size:2.5em;
+}
+
+.a-input {
+    box-sizing: border-box;
+
+    /* Auto layout */
+    
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 12px 16px;
+    gap: 8px;
+    
+    width: 328px;
+    height: 50px;
+    left: 420px;
+    top: 778px;
+    
+    background: #FFFFFF;
+    /* Gray 4 */
+    
+    border: 1px solid #BDBDBD;
+    border-radius: 8px;
+}
+
+.a-input:focus {
+    outline: none !important;
+    border:1px solid #719ECE;
+    box-shadow: 0 0 10px #719ECE;
+}
+
+::placeholder {
+    color:black;
+}
+
+.a-search {
+    display: flex;
+    justify-content: center;
+    margin: 50px 0;
+}
+
+.a-card {
+    background-color:white;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    width:40%;
+    border-radius: 8px;
+    width: -webkit-fill-available;
+}
+
+.a-center {
+    display: flex;
+    justify-content: center;
+    
 }

@@ -1,34 +1,12 @@
-.recipe-entry {
-    margin: 25px 0;
-    font-size: 0.9em;
-    min-width: 600px;
-    width: 100%;
-    border-radius: 5px 5px 0 0;
-}
-
-.table {
+table {
     border-collapse: collapse;
-    margin: 25px 0;
-    font-size: 0.9em;
-    min-width: 400px;
-    border-radius: 5px 5px 0 0;
-    border-bottom: 1px solid black;
-}
-table tr {
-    cursor: pointer;
-    border-bottom: 1px solid black;
-}
+  }
+  
+  tr {
+    border-bottom: 0.1px solid rgb(232, 230, 230);
+  }
 
-table tr:nth-of-type(odd) {
-    background-color: #f3f3f30d;
-}
-
-table tr:nth-of-type(even) {
-    background-color: #f3f3f31b;
-}
-
-td {
-    padding: 12px 15px;
-    color: white;
-    width: 100%;
+tr:hover {
+    background-color:rgb(248, 246, 246);
+    cursor:pointer;
 }
