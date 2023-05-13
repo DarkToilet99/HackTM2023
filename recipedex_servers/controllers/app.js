@@ -88,7 +88,9 @@ const infoAggregate = async (Lat, Lon, Distance, recipe_id) => {
  
       }
       stores_within_distance[i]["found_ingredients_list"] = found_ingredients_list;
-      break;
+      if(i >= 3) {
+        break;
+      }
     }
     
     return stores_within_distance;
@@ -97,10 +99,8 @@ const infoAggregate = async (Lat, Lon, Distance, recipe_id) => {
 
 
 const getStoresWithProducts = async(req, res) => {
- let test = await infoAggregate(req.query.Lat, req.query.Lon, req.query.distanceFrom, req.query.recipeId);
- console.log(test[0]["found_ingredients_list"]);
-
-  res.status(200).json(test);
+  let stores_with_products = await infoAggregate(req.query.Lat, req.query.Lon, req.query.distanceFrom, req.query.recipeId);
+  res.status(200).json(stores_with_products);
 }
 
 module.exports = {findStoresWithinDistance, getRecipe, getStoresWithProducts};
