@@ -38,17 +38,8 @@ export class SearchCardComponent {
     
   }
 
-  onSearch(e: Event){
-	console.log(e.target);
-	this.storeService.getMatchingRecipes(this.model).subscribe({
-		next: (result: Recipe[]) =>{
-			this.recipes = result;
-		}
-	})
-  }
-
   onKey(event: any) { // without type info
-    this.storeService.getMatchingRecipes(this.model).pipe(debounceTime(200)).subscribe({
+    this.storeService.getMatchingRecipes(event.target.value).pipe(debounceTime(200)).subscribe({
 		next: (result: Recipe[]) =>{
 			this.recipes = result;
 		}

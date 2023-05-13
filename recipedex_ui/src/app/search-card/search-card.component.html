@@ -5,9 +5,7 @@
     <form class="search-form">
         <input type="text"
             placeholder="Search" 
-            [value]="model"
             (keyup)="onKey($event)">
-        <button (action)="onSearch($event)" class="search-button"><i class="bi bi-search"></i></button>
     </form>
     <div class="data-container">
         <h2 class="title">Filters</h2>
