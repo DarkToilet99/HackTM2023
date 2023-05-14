@@ -39,6 +39,8 @@ export class SearchCardComponent {
   }
 
   onKey(event: any) { // without type info
+    console.log(event.target.value);
+    
     this.storeService.getMatchingRecipes(event.target.value).pipe(debounceTime(200)).subscribe({
 		next: (result: Recipe[]) =>{
 			this.recipes = result;

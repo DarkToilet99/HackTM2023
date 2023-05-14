@@ -2,6 +2,21 @@ html, body {
 height: 100%;
 margin: 0;
 padding: 0;
+color: #FFFEFC;  
+background-color: #fffafa;
+
+}
+
+.img-back {
+  background-image: linear-gradient(rgba(255,255,255,0.95), rgba(255,255,255,0.6)), url("./assets/back.png");
+  position: absolute;
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
+    background-repeat: no-repeat;
+    left: 0;
+    right: 0;
+    z-index:0; 
+   
 }
 
 * {

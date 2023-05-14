@@ -1,6 +1,8 @@
+
+<!-- 
 <div class="card-container">
     <div class="card-title">
-        <h1 class="title">Shop2Cook, One-stop shop for your recipes.</h1>
+        <h1 class="title neonText">Shop2Cook, One-stop shop for your recipes.</h1>
     </div>
     <form class="search-form">
         <input type="text"
@@ -37,7 +39,7 @@
                 </div>
             </div>
         </div>
-        <recipes-table [recipes]="recipes"></recipes-table>
+        <recipes-table></recipes-table>
     </div>
 
     <div *ngIf="this.storeList.length> 0? true: false" [ngStyle]="{ 'background-color': 'gray' }">
@@ -62,4 +64,28 @@
         </p-dataView>
     </div>
 </div>
+ -->
 
+ <div class="a-container">
+<div class="a-container-title">
+    Shop2Cook, One-stop shop for your recipes
+</div>
+
+<div class="a-search">
+    <input type="text"
+    class="a-input"
+    placeholder="Search" 
+    id="typeahead-format"
+    type="text"
+    name="search-product"
+    (keyup)="onKey($event)"
+>
+</div>
+
+<div class="a-center">
+    <div class="a-card" style="padding: 45px;">
+        <recipes-table [recipes]="recipes" ></recipes-table>
+    </div>
+
+</div>
+ </div>
