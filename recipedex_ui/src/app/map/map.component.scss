@@ -57,13 +57,13 @@ ul li {
 }
 
 .slider{
-    position: fixed;
+    position: absolute;
     z-index: 3;
     height: 40px;
     width: 40px;
     border-radius: 80%;
-    top: 100px;
-    left: 40px;
+    top: 10%;
+    left: 1%;
     background: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(4px) saturate(100%);
 }
