@@ -14,10 +14,9 @@ function calcCrow(coords1, coords2)
 {
   // var R = 6.371; // km
   var R = 6371000;
-  if( coords1 === undefined || coords2 === undefined){
-    return R;
-  }
-
+  // if( coords1 === undefined || coords2 === undefined){
+  //   return -1;
+  // }
   var dLat = toRad(coords2.Lat-coords1.Lat);
   var dLon = toRad(coords2.Lon-coords1.Lon);
   var Lat1 = toRad(coords1.Lat);
@@ -155,7 +154,7 @@ const searchRecipes = async (req, res) => {
 
 const _sortStoresByShortestDistance = (field) => {
     return function(a,b) {
-      return calcCrow(a[field] < b[field]);
+      return calcCrow(a['addr']['location'], b['addr']['location']);
     }
 }
 
