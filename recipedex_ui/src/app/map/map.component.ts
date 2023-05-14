@@ -23,9 +23,10 @@ export class AppMapComponent implements OnInit {
   buttonText: string = ">>";
   center: google.maps.LatLng = {} as google.maps.LatLng;
   currentLocationMarker : google.maps.Marker | undefined;
+  
 
   circle: google.maps.Circle = {} as google.maps.Circle;
-  radius = 5000;
+  radius = 3000;
   
   address: string = "";
   private geoCoder : any;
@@ -104,7 +105,7 @@ export class AppMapComponent implements OnInit {
 
 
 
-        this.storeService.getStoresForRecipe(this.latitude,this.longitude,1000,this.recipeId).subscribe({
+        this.storeService.getStoresForRecipe(this.latitude,this.longitude,this.radius,this.recipeId).subscribe({
           next: (result: any)=>{
             console.log(result);
             this.recommendedStoresList = result;
