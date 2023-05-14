@@ -127,21 +127,27 @@ const infoAggregate = async (Lat, Lon, Distance, recipe_id) => {
       promises.push(promise);
     }
     let found_ingredients = await Promise.all(promises);
+    
     for (ingredients_list of found_ingredients) {
       if(ingredients_list.length == 0) {
         should_store = false;
+        break;
       }
     }
     if( should_store == true) {
       stores_within_distance[i]["found_ingredients_list"] = found_ingredients;
     }
     else {
-      stores_within_distance.splice(i, 1);
+      stores_within_distance[i] = undefined;
     }
   }
-  
-  return stores_within_distance;
-}
+  for(let i = 0; i< stores_within_distance.length; i++) {
+    console.log(stores_within_distance[i]);
+    if(stores_within_distance[i] != undefined &&  stores_within_distance[i]["found_ingredients_list"].length > 0) {
+      console.log(stores_within_distance[i]);
+    }
+  }
+  return stores_within_distance.filter((el) => el !== undefined);}
 
 const searchRecipes = async (req, res) => {
   let search_string = req.query.search;
@@ -163,7 +169,7 @@ const sort_stores_by_distance = (stores) => {
 
 }
 
-const getStoresWithProducts = async(req, res) => {
+const getStoresWithProducts = async (req, res) => {
   let stores_with_products = await infoAggregate(req.query.Lat, req.query.Lon, req.query.distanceFrom, req.query.recipeId);
   res.status(200).json(stores_with_products.sort(_sortStoresByShortestDistance("location")));
 }
