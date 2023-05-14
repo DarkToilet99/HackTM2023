@@ -20,6 +20,7 @@ export class AppMapComponent implements OnInit {
   longitude: number = 0;
   zoom: number = 0;
   cardVisibility: boolean = true;
+  buttonText: string = ">>";
   center: google.maps.LatLng = {} as google.maps.LatLng;
   currentLocationMarker : google.maps.Marker | undefined;
 
@@ -149,6 +150,20 @@ export class AppMapComponent implements OnInit {
       }
     });
 
+  }
+
+  hideCard(e: any){
+    console.log(e)
+    if(this.cardVisibility){
+      this.cardVisibility = false;
+      e.className = 'recipe-details minimize';
+      this.buttonText = "<<";
+    }
+    else{
+      this.cardVisibility = true;
+      e.className = 'recipe-details maximize';
+      this.buttonText = ">>";
+    }
   }
 
 }
