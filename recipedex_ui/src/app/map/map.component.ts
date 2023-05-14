@@ -12,6 +12,7 @@ import { StoreService } from '../services/store.service';
   styleUrls: ['./map.component.scss']
 })
 export class AppMapComponent implements OnInit {
+  public allFoundIngredients: string[] = [];
   public recipeId = '';
   public recipe: Recipe = {} as Recipe;
   map: google.maps.Map | undefined;
@@ -41,7 +42,6 @@ export class AppMapComponent implements OnInit {
     this.recipeId = this.route.snapshot.paramMap.get('id')!;
     storeService.getRecipeById(this.recipeId).subscribe({
       next: (recipe: Recipe)=>{
-        console.log(recipe)
         this.recipe = recipe;
       }
     })
@@ -107,6 +107,7 @@ export class AppMapComponent implements OnInit {
         this.storeService.getStoresForRecipe(this.latitude,this.longitude,1000,this.recipeId).subscribe({
           next: (result: any)=>{
             console.log(result);
+            this.allFoundIngredients = result[0].found_ingredients_list.map((value: any) => value.map((value: any) => value.name));
             this.recommendedStoresList = result;
             this.currentLocationMarker?.setMap(null);
             this.circle.setMap(null);
