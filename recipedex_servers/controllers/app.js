@@ -134,7 +134,6 @@ const infoAggregate = async (Lat, Lon, Distance, recipe_id) => {
     else {
       stores_within_distance.splice(i, 1);
     }
-    
   }
   
   return stores_within_distance;
@@ -150,9 +149,19 @@ const searchRecipes = async (req, res) => {
   res.status(200).json(recipes);
 }
 
+const _sortStoresByShortestDistance = (field) => {
+    return function(a,b) {
+      return calcCrow(a[field] > b[field]);
+    }
+}
+
+const sort_stores_by_distance = (stores) => {
+
+}
+
 const getStoresWithProducts = async(req, res) => {
   let stores_with_products = await infoAggregate(req.query.Lat, req.query.Lon, req.query.distanceFrom, req.query.recipeId);
-  res.status(200).json(stores_with_products);
+  res.status(200).json(stores_with_products.sort(_sortStoresByShortestDistance("location")));
 }
 
 module.exports = {findStoresWithinDistance, getRecipe, getStoresWithProducts, getAllRecipes, searchRecipes};
