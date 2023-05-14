@@ -1,7 +1,7 @@
 #map{
     height: 100%;
     width: 100%;
-    background-image: linear-gradient(rgba(0, 8, 51, 0.493), rgba(0,8,51,0.9)), url("../../assets/store-map.png");
+    //background-image: linear-gradient(rgba(0, 8, 51, 0.493), rgba(0,8,51,0.9)), url("../../assets/store-map.png");
 }
 .scroll{
     height: 100%;
@@ -56,29 +56,70 @@ ul li {
     list-style-type: none;
 }
 
-.slide-right {
-	-webkit-animation: slide-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-	        animation: slide-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+.slider{
+    position: absolute;
+    z-index: 3;
+    height: 40px;
+    width: 40px;
+    border-radius: 80%;
+    top: 10%;
+    left: 1%;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(4px) saturate(100%);
 }
 
-@-webkit-keyframes slide-right {
+.minimize {
+	-webkit-animation: minimize 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: minimize 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+@-webkit-keyframes minimize {
+    0% {
+        -webkit-transform: transform(0) scale(1);
+                transform: translate(0) scale(1);
+    }
+    100% {
+        -webkit-transform: translate(-49%, -49%) scale(0.0);
+                transform: translate(-49%, -49%) scale(0.0);
+    }
+}
+@keyframes minimize {
 0% {
-    -webkit-transform: translateX(0);
-            transform: translateX(0);
+    -webkit-transform: transform(0) scale(1);
+            transform: translate(0) scale(1);
 }
 100% {
-    -webkit-transform: translateX(100px);
-            transform: translateX(100px);
+    -webkit-transform: translate(-49%, -49%) scale(0.0);
+            transform: translate(-49%, -49%) scale(0.0);
 }
 }
-@keyframes slide-right {
+
+
+
+.maximize {
+	-webkit-animation: maximize 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: maximize 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+@-webkit-keyframes maximize {
 0% {
-    -webkit-transform: translateX(0);
-            transform: translateX(0);
+    -webkit-transform: translate(-50%, -50%) scale(0.0);
+            transform: translate(-50%, -50%) scale(0.0);
 }
 100% {
-    -webkit-transform: translateX(100px);
-            transform: translateX(100px);
+    -webkit-transform: transform(0) scale(1);
+            transform: translate(0) scale(1);
+}
+    
+}
+@keyframes maximize {
+0% {
+    -webkit-transform: translate(-50%, -50%) scale(0.0);
+            transform: translate(-50%, -50%) scale(0.0);
+}
+100% {
+    -webkit-transform: transform(0) scale(1);
+            transform: translate(0) scale(1);
 }
 }
   

@@ -1,8 +1,12 @@
 <div id="map">
 </div>
-<div class="recipe-details-container ">
-    <div class="recipe-details">
-        <div class="scroll">
+<div class="recipe-details-container">
+    <button class="slider" (click)="hideCard(card)">
+        {{buttonText}}
+    </button>
+    <div #card class="recipe-details">
+        
+        <div class="scroll" >
             <div class="recipe-title">
                 <h2 class="title" title="Test">{{recipe.name}}</h2>
             </div>
