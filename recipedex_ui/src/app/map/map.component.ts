@@ -20,6 +20,7 @@ export class AppMapComponent implements OnInit {
   latitude: number = 0;
   longitude: number = 0;
   zoom: number = 0;
+  zoomedIn: boolean = false;
   cardVisibility: boolean = true;
   buttonText: string = ">>";
   center: google.maps.LatLng = {} as google.maps.LatLng;
@@ -108,7 +109,7 @@ export class AppMapComponent implements OnInit {
         this.storeService.getStoresForRecipe(this.latitude,this.longitude,this.radius,this.recipeId).subscribe({
           next: (result: any)=>{
             console.log(result);
-            this.allFoundIngredients = result[0].found_ingredients_list.map((value: any) => value.map((value: any) => value.name));
+            this.allFoundIngredients = result[0].found_ingredients_list.map((value: any) => value.map((value: any) => value.name.toLowerCase()));
             this.recommendedStoresList = result;
             this.currentLocationMarker?.setMap(null);
             this.circle.setMap(null);
@@ -123,7 +124,7 @@ export class AppMapComponent implements OnInit {
       } else {
         window.alert('Geocoder failed due to: ' + status);
       }
-    
+      this.zoomedIn = true;
     });
   }
 
